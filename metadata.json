@@ -1,0 +1,5 @@
+{
+  "name": "IBM Calc Pro",
+  "description": "Comprehensive CNC production management system for Star 206 and Tsugami 206 machines featuring AI-powered G-code analysis and real-time monitoring.",
+  "requestFramePermissions": []
+}

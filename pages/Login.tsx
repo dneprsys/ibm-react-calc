@@ -3,12 +3,15 @@ import { User, Lock, ArrowRight, AlertCircle, Cpu } from 'lucide-react';
 import { login } from '../services/auth';
 import { User as UserType } from '../types';
 import { logActivity } from '../services/logger';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Language } from '../utils/translations';
 
 interface LoginProps {
   onLogin: (user: UserType) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const { t, language, setLanguage } = useLanguage();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,10 +28,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         logActivity(user.name, 'User Login', 'Successful login', 'info');
         onLogin(user);
       } else {
-        setError('Invalid credentials');
+        setError(t.login.invalidCreds);
       }
     } catch (err) {
-      setError('Login failed');
+      setError(t.login.loginFailed);
     } finally {
       setLoading(false);
     }
@@ -41,8 +44,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg shadow-blue-900/50">
             <Cpu size={32} />
           </div>
-          <h1 className="text-2xl font-bold text-white">IBM Calc Pro</h1>
-          <p className="text-slate-400 mt-2 text-sm">Sign in to manage CNC production</p>
+          <h1 className="text-2xl font-bold text-white">{t.login.title}</h1>
+          <p className="text-slate-400 mt-2 text-sm">{t.login.subtitle}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -54,7 +57,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           )}
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Username</label>
+            <label className="text-sm font-medium text-slate-300">{t.login.username}</label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input
@@ -62,14 +65,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder:text-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all"
-                placeholder="Enter username"
+                placeholder={t.login.placeholderUser}
                 required
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Password</label>
+            <label className="text-sm font-medium text-slate-300">{t.login.password}</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
               <input
@@ -92,11 +95,27 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                Sign In <ArrowRight size={18} />
+                {t.login.signIn} <ArrowRight size={18} />
               </>
             )}
           </button>
         </form>
+
+        <div className="mt-8 flex justify-center gap-3">
+            {(['en', 'ru', 'ua'] as Language[]).map(lang => (
+                <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`px-3 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all border ${
+                        language === lang 
+                        ? 'bg-blue-500/10 text-blue-400 border-blue-500/30' 
+                        : 'text-slate-500 border-transparent hover:text-slate-300 hover:bg-slate-800'
+                    }`}
+                >
+                    {lang}
+                </button>
+            ))}
+        </div>
       </div>
     </div>
   );

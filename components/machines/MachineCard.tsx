@@ -157,8 +157,8 @@ const MachineCard: React.FC<MachineCardProps> = ({ machine, onTogglePause }) => 
                 {machine.material || 'NO MATERIAL'}
             </span>
             <span className="text-white font-mono text-xs font-bold">
-                {machine.partsCount} 
-                <span className="text-slate-500 font-normal"> / {partsPerBar > 0 ? partsPerBar : '-'}</span>
+                {partsPerBar > 0 ? partsPerBar : '-'} 
+                <span className="text-slate-500 font-normal"> / {machine.partsCount}</span>
             </span>
           </div>
           <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden">

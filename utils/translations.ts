@@ -2,6 +2,16 @@ export type Language = 'en' | 'ru' | 'ua';
 
 export const translations = {
   en: {
+    login: {
+      title: 'IBM Calc Pro',
+      subtitle: 'Sign in to manage CNC production',
+      username: 'Username',
+      password: 'Password',
+      signIn: 'Sign In',
+      placeholderUser: 'Enter username',
+      invalidCreds: 'Invalid credentials',
+      loginFailed: 'Login failed'
+    },
     sidebar: {
       production: 'Production',
       engineering: 'Engineering',
@@ -80,6 +90,16 @@ export const translations = {
     }
   },
   ru: {
+    login: {
+      title: 'IBM Calc Pro',
+      subtitle: 'Войдите для управления производством',
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      signIn: 'Войти',
+      placeholderUser: 'Введите имя пользователя',
+      invalidCreds: 'Неверные данные',
+      loginFailed: 'Ошибка входа'
+    },
     sidebar: {
       production: 'Производство',
       engineering: 'Инжиниринг',
@@ -158,6 +178,16 @@ export const translations = {
     }
   },
   ua: {
+    login: {
+      title: 'IBM Calc Pro',
+      subtitle: 'Увійдіть для управління виробництвом',
+      username: 'Користувач',
+      password: 'Пароль',
+      signIn: 'Увійти',
+      placeholderUser: 'Введіть ім\'я користувача',
+      invalidCreds: 'Невірні дані',
+      loginFailed: 'Помилка входу'
+    },
     sidebar: {
       production: 'Виробництво',
       engineering: 'Інженерія',

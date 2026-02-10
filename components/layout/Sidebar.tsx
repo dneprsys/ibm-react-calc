@@ -82,14 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, currentUser, on
 
   return (
     <aside className={`w-64 bg-slate-900 border-r border-slate-800 h-screen flex flex-col fixed left-0 top-0 z-30 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-blue-900/20">
-          I
-        </div>
-        <h1 className="text-xl font-bold text-white tracking-tight">IBM Calc Pro</h1>
-      </div>
-
-      <nav className="flex-1 px-3 py-2 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
         {menuGroups.map((group) => {
           // If group has no visible items (due to permission), skip it
           if (group.items.length === 0) return null;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, Search, Menu, Clock, Check, AlertTriangle, Info, X, CalendarDays, Globe } from 'lucide-react';
+import { Bell, Menu, Clock, Check, AlertTriangle, Info, X, CalendarDays, Globe } from 'lucide-react';
 import { User } from '../../types';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { Language } from '../../utils/translations';
@@ -49,13 +49,13 @@ const TopBar: React.FC<TopBarProps> = ({ currentUser, onToggleSidebar }) => {
          <button onClick={onToggleSidebar} className="text-slate-400 hover:text-white transition-colors cursor-pointer p-1">
             <Menu className="w-6 h-6" />
          </button>
-         <div className="relative hidden md:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-            <input 
-              type="text" 
-              placeholder={t.topbar.search} 
-              className="bg-slate-800 border border-slate-700 rounded-full pl-10 pr-4 py-1.5 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 w-64 transition-all"
-            />
+         
+         {/* Logo moved from Sidebar */}
+         <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white shadow-lg shadow-blue-900/20">
+              I
+            </div>
+            <h1 className="text-xl font-bold text-white tracking-tight hidden sm:block">IBM Calc Pro</h1>
          </div>
       </div>
 

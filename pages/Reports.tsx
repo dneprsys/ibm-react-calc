@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Download, FileText, Calendar, Filter, Loader, FileSpreadsheet } from 'lucide-react';
 import * as XLSX from 'xlsx';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Reports: React.FC = () => {
+  const { t } = useLanguage();
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [selectedMachine, setSelectedMachine] = useState('all');
   const [isGenerating, setIsGenerating] = useState(false);
 
   const [reports, setReports] = useState([
-    { id: 1, name: 'Weekly Production Summary', date: '2023-10-25', size: '2.4 MB', type: 'PDF' },
-    { id: 2, name: 'Machine Utilization - Star 206', date: '2023-10-24', size: '1.1 MB', type: 'PDF' },
-    { id: 3, name: 'Error Log Analysis', date: '2023-10-24', size: '856 KB', type: 'CSV' },
-    { id: 4, name: 'OEE Report - Oct 2023', date: '2023-10-20', size: '3.2 MB', type: 'PDF' },
+    { id: '1', name: 'Weekly Production Summary', date: '2023-10-25', size: '2.4 MB', type: 'PDF' },
+    { id: '2', name: 'Machine Utilization - Star 206', date: '2023-10-24', size: '1.1 MB', type: 'PDF' },
+    { id: '3', name: 'Error Log Analysis', date: '2023-10-24', size: '856 KB', type: 'CSV' },
+    { id: '4', name: 'OEE Report - Oct 2023', date: '2023-10-20', size: '3.2 MB', type: 'PDF' },
   ]);
 
   const handleGenerate = () => {
@@ -20,12 +22,12 @@ const Reports: React.FC = () => {
     
     // Simulate generation with filtering parameters
     setTimeout(() => {
-      const machineName = selectedMachine === 'all' ? 'All Units' : 
-                         selectedMachine === 'star' ? 'Star Line' : 'Tsugami Line';
+      const machineName = selectedMachine === 'all' ? t.reports.allMachines : 
+                         selectedMachine === 'star' ? t.reports.starLine : t.reports.tsugamiLine;
       const dateRange = startDate && endDate ? `(${startDate} to ${endDate})` : '';
       
       const newReport = {
-        id: Date.now(),
+        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
         name: `Production Report - ${machineName} ${dateRange}`,
         date: new Date().toISOString().split('T')[0],
         size: '1.5 MB',
@@ -55,30 +57,77 @@ const Reports: React.FC = () => {
     XLSX.writeFile(workbook, `IBM_Calc_Pro_Reports_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
+  const handleExportCSV = () => {
+    const headers = ['ID', 'Report Name', 'Date', 'Size', 'Type'];
+    const rows = reports.map(r => [r.id, `"${r.name}"`, r.date, r.size, r.type]);
+    const csvContent = [headers, ...rows].map(e => e.join(",")).join("\n");
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `IBM_Calc_Pro_Reports_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleExportJSON = () => {
+    const jsonString = JSON.stringify(reports, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `IBM_Calc_Pro_Reports_${new Date().toISOString().split('T')[0]}.json`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-start">
         <div>
-            <h2 className="text-2xl font-bold text-white">Production Reports</h2>
-            <p className="text-slate-400 mt-1">Generate and download performance data</p>
+            <h2 className="text-2xl font-bold text-white">{t.reports.title}</h2>
+            <p className="text-slate-400 mt-1">{t.reports.subtitle}</p>
         </div>
-        <button 
-            onClick={handleExportXLSX}
-            className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors"
-        >
-            <FileSpreadsheet className="w-4 h-4 text-green-500" />
-            <span className="text-sm font-medium">Export List (.xlsx)</span>
-        </button>
+        <div className="flex gap-2">
+            <button 
+                onClick={handleExportCSV}
+                className="flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors"
+                title="Export as CSV"
+            >
+                <FileSpreadsheet className="w-4 h-4 text-blue-500" />
+                <span className="text-xs font-medium">CSV</span>
+            </button>
+            <button 
+                onClick={handleExportJSON}
+                className="flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors"
+                title="Export as JSON"
+            >
+                <FileSpreadsheet className="w-4 h-4 text-purple-500" />
+                <span className="text-xs font-medium">JSON</span>
+            </button>
+            <button 
+                onClick={handleExportXLSX}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg border border-slate-700 transition-colors"
+            >
+                <FileSpreadsheet className="w-4 h-4 text-green-500" />
+                <span className="text-sm font-medium">{t.reports.export}</span>
+            </button>
+        </div>
       </div>
 
       <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
         <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
             <Filter className="w-4 h-4 text-blue-500" />
-            Report Parameters
+            {t.reports.parameters}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
             <div>
-                <label className="block text-xs text-slate-400 mb-1.5">Start Date</label>
+                <label className="block text-xs text-slate-400 mb-1.5">{t.reports.startDate}</label>
                 <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input 
@@ -90,7 +139,7 @@ const Reports: React.FC = () => {
                 </div>
             </div>
             <div>
-                <label className="block text-xs text-slate-400 mb-1.5">End Date</label>
+                <label className="block text-xs text-slate-400 mb-1.5">{t.reports.endDate}</label>
                 <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input 
@@ -102,15 +151,15 @@ const Reports: React.FC = () => {
                 </div>
             </div>
             <div>
-                <label className="block text-xs text-slate-400 mb-1.5">Machine / Line</label>
+                <label className="block text-xs text-slate-400 mb-1.5">{t.reports.machineLine}</label>
                 <select 
                     value={selectedMachine}
                     onChange={(e) => setSelectedMachine(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-4 py-2 text-sm focus:border-blue-500 outline-none"
                 >
-                    <option value="all">All Machines</option>
-                    <option value="star">Star Line (206)</option>
-                    <option value="tsugami">Tsugami Line (206)</option>
+                    <option value="all">{t.reports.allMachines}</option>
+                    <option value="star">{t.reports.starLine}</option>
+                    <option value="tsugami">{t.reports.tsugamiLine}</option>
                 </select>
             </div>
             <button 
@@ -119,7 +168,7 @@ const Reports: React.FC = () => {
               className="bg-blue-600 hover:bg-blue-500 disabled:bg-blue-600/50 text-white rounded-lg px-6 py-2 text-sm font-medium transition-colors shadow-lg shadow-blue-900/20 h-[38px] flex items-center justify-center gap-2"
             >
               {isGenerating ? <Loader className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-              {isGenerating ? 'Generating...' : 'Generate Report'}
+              {isGenerating ? t.reports.generating : t.reports.generate}
             </button>
         </div>
       </div>
@@ -127,7 +176,7 @@ const Reports: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
               <div className="p-4 border-b border-slate-700 bg-slate-900/50">
-                  <h3 className="font-bold text-white">Recent Reports</h3>
+                  <h3 className="font-bold text-white">{t.reports.recent}</h3>
               </div>
               <div className="divide-y divide-slate-700">
                   {reports.map(report => (
@@ -150,24 +199,24 @@ const Reports: React.FC = () => {
           </div>
 
           <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-             <h3 className="font-bold text-white mb-4">Automated Reporting</h3>
-             <p className="text-sm text-slate-400 mb-6">Configure daily or weekly reports to be sent automatically to your email or Telegram.</p>
+             <h3 className="font-bold text-white mb-4">{t.reports.automated}</h3>
+             <p className="text-sm text-slate-400 mb-6">{t.reports.automatedDesc}</p>
              
              <div className="space-y-4">
                  <div className="flex items-center justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
-                     <span className="text-sm text-slate-200">Daily Production Summary (08:00 AM)</span>
+                     <span className="text-sm text-slate-200">{t.reports.dailySummary}</span>
                      <div className="w-10 h-5 bg-green-600 rounded-full relative cursor-pointer">
                          <div className="w-3 h-3 bg-white rounded-full absolute right-1 top-1"></div>
                      </div>
                  </div>
                  <div className="flex items-center justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
-                     <span className="text-sm text-slate-200">Weekly OEE Analysis (Monday)</span>
+                     <span className="text-sm text-slate-200">{t.reports.weeklyOee}</span>
                      <div className="w-10 h-5 bg-green-600 rounded-full relative cursor-pointer">
                          <div className="w-3 h-3 bg-white rounded-full absolute right-1 top-1"></div>
                      </div>
                  </div>
                  <div className="flex items-center justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
-                     <span className="text-sm text-slate-200">Monthly Maintenance Logs</span>
+                     <span className="text-sm text-slate-200">{t.reports.monthlyMaint}</span>
                      <div className="w-10 h-5 bg-slate-600 rounded-full relative cursor-pointer">
                          <div className="w-3 h-3 bg-white rounded-full absolute left-1 top-1"></div>
                      </div>

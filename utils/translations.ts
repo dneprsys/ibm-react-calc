@@ -1,3 +1,4 @@
+
 export type Language = 'en' | 'ru' | 'ua';
 
 export const translations = {
@@ -29,8 +30,62 @@ export const translations = {
     topbar: {
       search: 'Search...',
       online: 'Online',
-      notifications: 'Notifications',
-      viewAll: 'View All History'
+      notifications: 'Activity Log',
+      viewAll: 'View All History',
+      shiftCalendar: 'Shift Calendar',
+      shiftTimer: 'Time to End of Shift',
+      shift: 'Shift',
+      shift1: 'Shift 1 (08:00 - 20:00)',
+      shift2: 'Shift 2 (20:00 - 08:00)',
+    },
+    admin: {
+      title: 'Admin Panel',
+      subtitle: 'Manage users, permissions and audit logs',
+      users: 'Users',
+      activityLog: 'Activity Log',
+      permissions: 'Permissions Matrix',
+      rbac: 'Role-Based Access Control',
+      securityPolicy: 'Security Policy',
+      addUser: 'Add User'
+    },
+    settings: {
+      notifications: 'Notifications & Alerts',
+      telegram: 'Telegram Integration',
+      connect: 'Connect & Test',
+      security: 'Security',
+      mobile: 'Mobile App',
+      history: 'Notification History'
+    },
+    analytics: {
+      fleetStatus: 'Fleet Status Distribution',
+      weeklyOutput: 'Weekly Output vs Target',
+      aiInsight: 'AI Optimization Insight'
+    },
+    ai: {
+      title: 'Thinking Assistant',
+      subtitle: 'GEMINI 3 PRO ACTIVE',
+      placeholder: 'Ask a complex engineering question...',
+      greeting: "I'm IBM Calc Pro's high-reasoning AI. I can solve complex engineering challenges or production logic. What can I analyze for you today?"
+    },
+    reports: {
+      title: 'Production Reports',
+      subtitle: 'Generate and download performance data',
+      export: 'Export List (.xlsx)',
+      parameters: 'Report Parameters',
+      startDate: 'Start Date',
+      endDate: 'End Date',
+      machineLine: 'Machine / Line',
+      allMachines: 'All Machines',
+      starLine: 'Star Line (206)',
+      tsugamiLine: 'Tsugami Line (206)',
+      generate: 'Generate Report',
+      generating: 'Generating...',
+      recent: 'Recent Reports',
+      automated: 'Automated Reporting',
+      automatedDesc: 'Configure daily or weekly reports to be sent automatically to your email or Telegram.',
+      dailySummary: 'Daily Production Summary (08:00 AM)',
+      weeklyOee: 'Weekly OEE Analysis (Monday)',
+      monthlyMaint: 'Monthly Maintenance Logs'
     },
     dashboard: {
       title: 'Production Overview',
@@ -55,12 +110,14 @@ export const translations = {
       emptyMessage: 'Your production floor is currently empty.',
       addFirst: 'Add First Machine',
       parts: 'Parts',
-      timeLeft: 'Time Left',
-      program: 'Program',
+      completed: 'COMPLETED',
+      timeLeft: 'EST. TIME REMAINING',
+      program: 'PROGRAM',
+      partProductionTimer: 'PART PRODUCTION',
       stopTime: 'Time to Stop',
-      startSeries: 'Start Series',
-      endSeries: 'End Series',
-      operator: 'Operator',
+      startSeries: 'START SERIES',
+      endSeries: 'EST. COMPLETION',
+      operator: 'OPERATOR',
       pause: 'PAUSE',
       resume: 'RESUME',
       modalTitle: 'Add Series',
@@ -69,11 +126,26 @@ export const translations = {
       plan: 'Planned Qty',
       done: 'Done Qty',
       cycleTime: 'Cycle Time',
-      material: 'Material',
+      material: 'MATERIAL',
+      resetBar: 'Reset Bar',
+      materialCounter: 'Material Counter',
       diameter: 'Diameter',
       cancel: 'Cancel',
       delete: 'Delete',
-      start: 'Start'
+      start: 'Start',
+      model: 'Machine Model',
+      barLength: 'Bar Length (mm)',
+      cutoff: 'Cutoff (mm)',
+      partLength: 'Part Length (mm)',
+      factCycleTime: 'Fact Cycle Time',
+      status: {
+        running: 'RUNNING',
+        idle: 'IDLE',
+        alarm: 'ALARM',
+        setup: 'SETUP',
+        offline: 'OFFLINE',
+        paused: 'PAUSED'
+      }
     },
     gcode: {
       editor: 'Editor',
@@ -86,7 +158,9 @@ export const translations = {
       thinking: 'Gemini is thinking...',
       analyzing: 'Analyzing syntax & safety...',
       optimizing: 'Calculating toolpaths & cycle times...',
-      lines: 'Lines'
+      lines: 'Lines',
+      invalidType: 'Invalid file type. Please upload .nc, .gcode, or .txt files.',
+      readError: 'Error reading file.'
     }
   },
   ru: {
@@ -117,8 +191,62 @@ export const translations = {
     topbar: {
       search: 'Поиск...',
       online: 'В сети',
-      notifications: 'Уведомления',
-      viewAll: 'Показать все'
+      notifications: 'Журнал активности',
+      viewAll: 'Показать все',
+      shiftCalendar: 'Календарь смен',
+      shiftTimer: 'До конца смены',
+      shift: 'Смена',
+      shift1: 'Смена 1 (08:00 - 20:00)',
+      shift2: 'Смена 2 (20:00 - 08:00)',
+    },
+    admin: {
+      title: 'Админ Панель',
+      subtitle: 'Управление пользователями, правами и логами аудита',
+      users: 'Пользователи',
+      activityLog: 'Журнал активности',
+      permissions: 'Матрица прав',
+      rbac: 'Управление доступом на основе ролей',
+      securityPolicy: 'Политика безопасности',
+      addUser: 'Добавить пользователя'
+    },
+    settings: {
+      notifications: 'Уведомления и оповещения',
+      telegram: 'Интеграция с Telegram',
+      connect: 'Подключить и проверить',
+      security: 'Безопасность',
+      mobile: 'Мобильное приложение',
+      history: 'История уведомлений'
+    },
+    analytics: {
+      fleetStatus: 'Распределение статусов парка',
+      weeklyOutput: 'Еженедельная выработка vs План',
+      aiInsight: 'ИИ Оптимизация'
+    },
+    ai: {
+      title: 'Движок рассуждений',
+      subtitle: 'GEMINI 3 PRO АКТИВЕН',
+      placeholder: 'Задайте сложный инженерный вопрос...',
+      greeting: "Я — ИИ IBM Calc Pro с высоким уровнем рассуждения. Я могу решать сложные инженерные задачи или логику производства. Что я могу проанализировать для вас сегодня?"
+    },
+    reports: {
+      title: 'Отчеты производства',
+      subtitle: 'Создание и загрузка данных о производительности',
+      export: 'експорт в xlsx',
+      parameters: 'Параметры отчета',
+      startDate: 'Дата начала',
+      endDate: 'Дата окончания',
+      machineLine: 'Станок / Линия',
+      allMachines: 'Все станки',
+      starLine: 'Линия Star (206)',
+      tsugamiLine: 'Линия Tsugami (206)',
+      generate: 'Сформировать отчет',
+      generating: 'Формирование...',
+      recent: 'Последние отчеты',
+      automated: 'Автоматическая отчетность',
+      automatedDesc: 'Настройте ежедневные или еженедельные отчеты для автоматической отправки на вашу электронную почту или в Telegram.',
+      dailySummary: 'Ежедневная сводка (08:00)',
+      weeklyOee: 'Еженедельный анализ OEE (Понедельник)',
+      monthlyMaint: 'Ежемесячные журналы обслуживания'
     },
     dashboard: {
       title: 'Обзор Производства',
@@ -143,12 +271,14 @@ export const translations = {
       emptyMessage: 'Производственный цех пуст.',
       addFirst: 'Добавить станок',
       parts: 'Детали',
-      timeLeft: 'Осталось',
-      program: 'Программа',
+      completed: 'ВЫПОЛНЕНО',
+      timeLeft: 'ВРЕМЕНИ ОСТАЛОСЬ',
+      program: 'ПРОГРАММА',
+      partProductionTimer: 'ТАЙМЕР ДЕТАЛИ',
       stopTime: 'Остановка через',
-      startSeries: 'Старт серии',
-      endSeries: 'Конец серии',
-      operator: 'Оператор',
+      startSeries: 'СТАРТ СЕРИИ',
+      endSeries: 'ОКОНЧАНИЕ СЕРИИ',
+      operator: 'ОПЕРАТОР',
       pause: 'ПАУЗА',
       resume: 'ПРОДОЛЖИТЬ',
       modalTitle: 'Добавить серию',
@@ -156,12 +286,27 @@ export const translations = {
       mcNumber: 'Номер МК',
       plan: 'План',
       done: 'Сделано',
-      cycleTime: 'Время цикла',
-      material: 'Материал',
+      cycleTime: 'План',
+      material: 'МАТЕРИАЛ',
+      resetBar: 'Смена прутка',
+      materialCounter: 'Счетчик материала',
       diameter: 'Диаметр',
       cancel: 'Отмена',
       delete: 'Удалить',
-      start: 'Старт'
+      start: 'Старт',
+      model: 'Модель станка',
+      barLength: 'Длинна заготовки',
+      cutoff: 'Остаток',
+      partLength: 'длинна детали',
+      factCycleTime: 'факт',
+      status: {
+        running: 'В РАБОТЕ',
+        idle: 'ПРОСТОЙ',
+        alarm: 'ОШИБКА',
+        setup: 'НАЛАДКА',
+        offline: 'ОФФЛАЙН',
+        paused: 'ПАУЗА'
+      }
     },
     gcode: {
       editor: 'Редактор',
@@ -174,7 +319,9 @@ export const translations = {
       thinking: 'Gemini думает...',
       analyzing: 'Анализ синтаксиса и безопасности...',
       optimizing: 'Расчет траекторий и времени цикла...',
-      lines: 'Строк'
+      lines: 'Строк',
+      invalidType: 'Неверный тип файла. Пожалуйста, загрузите файлы .nc, .gcode или .txt.',
+      readError: 'Ошибка чтения файла.'
     }
   },
   ua: {
@@ -205,8 +352,62 @@ export const translations = {
     topbar: {
       search: 'Пошук...',
       online: 'В мережі',
-      notifications: 'Сповіщення',
-      viewAll: 'Показати всі'
+      notifications: 'Журнал активності',
+      viewAll: 'Показати всі',
+      shiftCalendar: 'Календар змін',
+      shiftTimer: 'До кінця зміни',
+      shift: 'Зміна',
+      shift1: 'Зміна 1 (08:00 - 20:00)',
+      shift2: 'Зміна 2 (20:00 - 08:00)',
+    },
+    admin: {
+      title: 'Адмін Панель',
+      subtitle: 'Управління користувачами, правами та логами аудиту',
+      users: 'Користувачі',
+      activityLog: 'Журнал активності',
+      permissions: 'Матриця прав',
+      rbac: 'Управління доступом на основі ролей',
+      securityPolicy: 'Політика безпеки',
+      addUser: 'Додати користувача'
+    },
+    settings: {
+      notifications: 'Сповіщення та оповіщення',
+      telegram: 'Інтеграція з Telegram',
+      connect: 'Підключити та перевірити',
+      security: 'Безпека',
+      mobile: 'Мобільний додаток',
+      history: 'Історія сповіщень'
+    },
+    analytics: {
+      fleetStatus: 'Розподіл статусів парку',
+      weeklyOutput: 'Щотижневий виробіток vs План',
+      aiInsight: 'ШІ Оптимізація'
+    },
+    ai: {
+      title: 'Двигун міркувань',
+      subtitle: 'GEMINI 3 PRO АКТИВНИЙ',
+      placeholder: 'Задайте складне інженерне питання...',
+      greeting: "Я — ШІ IBM Calc Pro з високим рівнем міркування. Я можу вирішувати складні інженерні завдання або логіку виробництва. Що я можу проаналізувати для вас сьогодні?"
+    },
+    reports: {
+      title: 'Звіти виробництва',
+      subtitle: 'Створення та завантаження даних про продуктивність',
+      export: 'експорт в xlsx',
+      parameters: 'Параметри звіту',
+      startDate: 'Дата початку',
+      endDate: 'Дата закінчення',
+      machineLine: 'Верстат / Лінія',
+      allMachines: 'Всі верстати',
+      starLine: 'Лінія Star (206)',
+      tsugamiLine: 'Лінія Tsugami (206)',
+      generate: 'Сформувати звіт',
+      generating: 'Формування...',
+      recent: 'Останні звіти',
+      automated: 'Автоматична звітність',
+      automatedDesc: 'Налаштуйте щоденні або щотижневі звіти для автоматичної відправки на вашу електронну пошту або в Telegram.',
+      dailySummary: 'Щоденне зведення (08:00)',
+      weeklyOee: 'Щотижневий аналіз OEE (Понеділок)',
+      monthlyMaint: 'Щомісячні журнали обслуговування'
     },
     dashboard: {
       title: 'Огляд Виробництва',
@@ -231,12 +432,14 @@ export const translations = {
       emptyMessage: 'Виробничий цех порожній.',
       addFirst: 'Додати верстат',
       parts: 'Деталі',
-      timeLeft: 'Залишилось',
-      program: 'Програма',
+      completed: 'ВИКОНАНО',
+      timeLeft: 'ЗАЛИШИЛОСЬ ЧАСУ',
+      program: 'ПРОГРАМА',
+      partProductionTimer: 'ТАЙМЕР ДЕТАЛІ',
       stopTime: 'Зупинка через',
-      startSeries: 'Старт серії',
-      endSeries: 'Кінець серії',
-      operator: 'Оператор',
+      startSeries: 'СТАРТ СЕРІЇ',
+      endSeries: 'КІНЕЦЬ СЕРІЇ',
+      operator: 'ОПЕРАТОР',
       pause: 'ПАУЗА',
       resume: 'ПРОДОВЖИТИ',
       modalTitle: 'Додати серію',
@@ -244,12 +447,27 @@ export const translations = {
       mcNumber: 'Номер МК',
       plan: 'План',
       done: 'Зроблено',
-      cycleTime: 'Час циклу',
-      material: 'Матеріал',
+      cycleTime: 'План',
+      material: 'МАТЕРІАЛ',
+      resetBar: 'Зміна прутка',
+      materialCounter: 'Лічильник матеріалу',
       diameter: 'Діаметр',
       cancel: 'Скасувати',
       delete: 'Видалити',
-      start: 'Старт'
+      start: 'Старт',
+      model: 'Модель верстата',
+      barLength: 'Довжина заготовки',
+      cutoff: 'Залишок',
+      partLength: 'довжина деталі',
+      factCycleTime: 'факт',
+      status: {
+        running: 'В РОБОТІ',
+        idle: 'ПРОСТІЙ',
+        alarm: 'ПОМИЛКА',
+        setup: 'НАЛАГОДЖЕННЯ',
+        offline: 'ОФЛАЙН',
+        paused: 'ПАУЗА'
+      }
     },
     gcode: {
       editor: 'Редактор',
@@ -259,10 +477,12 @@ export const translations = {
       analyze: 'ШІ Аналіз',
       report: 'Звіт аналізу',
       emptyState: 'Перетягніть файл або вставте код для аналізу.',
-      thinking: 'Gemini думає...',
+      thinking: 'Gemini думает...',
       analyzing: 'Аналіз синтаксису та безпеки...',
       optimizing: 'Розрахунок траєкторій та часу циклу...',
-      lines: 'Рядків'
+      lines: 'Рядків',
+      invalidType: 'Невірний тип файлу. Будь ласка, завантажте файли .nc, .gcode або .txt.',
+      readError: 'Помилка читання файлу.'
     }
   }
 };

@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Dashboard -->
+  <!-- Main Application -->
   <url>
     <loc>https://ibm-calc-pro.app/</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Production Modules -->
+  
+  <!-- Production & Monitoring -->
   <url>
     <loc>https://ibm-calc-pro.app/machines</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>always</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ibm-calc-pro.app/dashboard</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>always</changefreq>
     <priority>0.9</priority>
   </url>
-  <!-- Engineering Modules -->
+  
+  <!-- Engineering & Analysis -->
   <url>
     <loc>https://ibm-calc-pro.app/gcode</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Intelligence Modules -->
   <url>
     <loc>https://ibm-calc-pro.app/analytics</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <!-- Reporting (Restricted) -->
   <url>
     <loc>https://ibm-calc-pro.app/reports</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- System Modules -->
+  
+  <!-- Administration & System -->
   <url>
     <loc>https://ibm-calc-pro.app/admin</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://ibm-calc-pro.app/settings</loc>
-    <lastmod>2023-10-27</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

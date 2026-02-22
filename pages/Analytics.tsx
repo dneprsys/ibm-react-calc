@@ -1,5 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, AreaChart, Area } from 'recharts';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const machineData = [
   { name: 'Running', value: 65, color: '#22c55e' },
@@ -19,17 +20,18 @@ const productionData = [
 ];
 
 const Analytics: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <div className="space-y-6">
         <div>
-            <h2 className="text-2xl font-bold text-white">Performance Analytics</h2>
+            <h2 className="text-2xl font-bold text-white">{t.sidebar.analytics}</h2>
             <p className="text-slate-400 mt-1">Deep dive into production efficiency</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Machine Status Distribution */}
             <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
-                <h3 className="text-lg font-bold text-white mb-4">Fleet Status Distribution</h3>
+                <h3 className="text-lg font-bold text-white mb-4">{t.analytics.fleetStatus}</h3>
                 <div className="h-64 flex items-center justify-center">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -65,7 +67,7 @@ const Analytics: React.FC = () => {
 
             {/* Weekly Production vs Target */}
             <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
-                <h3 className="text-lg font-bold text-white mb-4">Weekly Output vs Target</h3>
+                <h3 className="text-lg font-bold text-white mb-4">{t.analytics.weeklyOutput}</h3>
                 <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={productionData}>
@@ -100,7 +102,7 @@ const Analytics: React.FC = () => {
                         </svg>
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-white">AI Optimization Insight</h3>
+                        <h3 className="text-xl font-bold text-white">{t.analytics.aiInsight}</h3>
                         <p className="text-indigo-200 mt-2 max-w-2xl leading-relaxed">
                             Based on yesterday's data, Machine <span className="font-bold text-white">Tsugami-03</span> is showing micro-stoppages every 45 minutes. This correlates with the scheduled chip conveyor cycle. Consider adjusting the conveyor timing to reduce idle time by estimated <span className="font-bold text-white">4.5%</span>.
                         </p>

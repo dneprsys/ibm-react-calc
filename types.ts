@@ -1,9 +1,10 @@
+
 export type MachineStatus = 'idle' | 'running' | 'alarm' | 'setup' | 'offline' | 'paused';
 
 export interface Machine {
   id: string;
   name: string;
-  model: 'Star 206' | 'Tsugami 206';
+  model: 'Star 206' | 'Tsugami 206' | 'Tsugami S 206' | 'CITIZEN';
   status: MachineStatus;
   currentProgram?: string;
   partsCount: number;
@@ -66,6 +67,7 @@ export interface ActivityLogEntry {
   details: string;
   timestamp: string;
   type: 'info' | 'warning' | 'error' | 'success';
+  unread?: boolean;
 }
 
 export interface NotificationLogEntry {

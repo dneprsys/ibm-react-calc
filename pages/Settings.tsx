@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Bell, Send, Shield, Smartphone, Mail, CheckCircle2, History, AlertCircle } from 'lucide-react';
 import { NotificationLogEntry } from '../types';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Settings: React.FC = () => {
+  const { t } = useLanguage();
   const [telegramId, setTelegramId] = useState('');
   const [isConnected, setIsConnected] = useState(false);
   
@@ -36,7 +38,7 @@ const Settings: React.FC = () => {
   return (
     <div className="space-y-8 max-w-5xl">
       <div>
-        <h2 className="text-2xl font-bold text-white">System Settings</h2>
+        <h2 className="text-2xl font-bold text-white">{t.sidebar.settings}</h2>
         <p className="text-slate-400 mt-1">Configure notifications, users, and general preferences</p>
       </div>
 
@@ -47,7 +49,7 @@ const Settings: React.FC = () => {
                 <div className="p-6 border-b border-slate-700">
                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
                         <Bell className="w-5 h-5 text-blue-500" />
-                        Notifications & Alerts
+                        {t.settings.notifications}
                     </h3>
                 </div>
                 
@@ -56,7 +58,7 @@ const Settings: React.FC = () => {
                     <div>
                         <h4 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
                             <Send className="w-4 h-4 text-sky-500" />
-                            Telegram Integration
+                            {t.settings.telegram}
                         </h4>
                         <div className="bg-slate-900/50 p-5 rounded-xl border border-slate-700">
                             <p className="text-sm text-slate-400 mb-4">
@@ -84,7 +86,7 @@ const Settings: React.FC = () => {
                                         : 'bg-blue-600 hover:bg-blue-500 text-white'
                                     }`}
                                 >
-                                    {isConnected ? 'Connected' : 'Connect & Test'}
+                                    {isConnected ? 'Connected' : t.settings.connect}
                                 </button>
                             </div>
                         </div>
